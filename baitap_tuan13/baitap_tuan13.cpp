@@ -75,3 +75,12 @@ int main() {
 
     return 0;
 }
+/*
+ DO PHUC TAP CUA THUAT TOAN TIM KIEM TREN CAY NHI PHAN TIM KIEM
+1. Truong hop tot nhat
+   - Cay phat trien tuong doi can bang. Moi lan so sanh loai bo duoc 1/2 so luong Node.
+   - Do phuc tap: O(log n)
+2. Truong hop xau nhat:
+   - Du lieu dau vao bi sap xep san tu truoc, cay bi lech han ve 1 phia (suy bien thanh danh sach lien ket).
+   - Do phuc tap: O(n) (voi n la tong so sinh vien).
+*/
