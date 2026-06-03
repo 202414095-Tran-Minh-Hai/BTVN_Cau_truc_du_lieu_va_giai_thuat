@@ -8,10 +8,14 @@
 *.log
 *.lastbuildstate
 
-# Chặn các file cấu hình của Visual Studio 
+# Chặn các file cấu hình của Visual Studio
 .vs/
 *.slnx
 *.user
 *.sln
 *.vcxproj
 *.filters
+
+
+x64/
+Debug/
