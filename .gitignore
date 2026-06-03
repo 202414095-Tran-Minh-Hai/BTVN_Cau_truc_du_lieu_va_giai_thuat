@@ -1,6 +1,17 @@
+# Chặn file bấm Run code
+*.pdb
+*.tlog
+*.obj
+*.idb
+*.ilk
+*.recipe
+*.log
+*.lastbuildstate
+
+# Chặn các file cấu hình của Visual Studio 
 .vs/
+*.slnx
+*.user
 *.sln
 *.vcxproj
 *.filters
-*.slnx
-*.user

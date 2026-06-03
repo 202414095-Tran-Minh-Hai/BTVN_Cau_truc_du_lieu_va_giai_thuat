@@ -38,6 +38,26 @@ void duyetGiua(Node* nutHientai) {
         duyetGiua(nutHientai->right);
     }
 }
+// hàm tìm sinh viên 
+void timnamsinh(Node* nutHientai, int namCanTim) {
+    if (nutHientai == NULL) {
+        return;
+    }
+
+    if (nutHientai->data == namCanTim) {
+        cout << "Da tim thay sinh vien sinh nam " << namCanTim << "!" << endl;
+        // Vi co the co nhieu ban cung sinh nam 2004 (nam ben nhanh phai), phai tim tiep
+        timnamsinh(nutHientai->right, namCanTim);
+        return; }
+
+    // nhỉ hơn rẽ trái tìm
+    if (namCanTim < nutHientai->data) {
+        timnamsinh(nutHientai->left, namCanTim);  }
+    // lớn thù rẽ phải tìm
+    else {
+        timnamsinh(nutHientai->right, namCanTim);
+   }
+}
 
 
 int main() {
@@ -50,6 +70,8 @@ int main() {
     cout << "Danh sach nam sinh (Duyet giua): ";
     duyetGiua(goc);
     cout << endl;
+    cout << "\n--- Ket qua tim kiem ---" << endl;
+    timnamsinh(goc, 2004); 
 
     return 0;
 }
