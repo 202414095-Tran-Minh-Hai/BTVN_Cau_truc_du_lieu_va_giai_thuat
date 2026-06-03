@@ -24,14 +24,32 @@ Node* chenNamsinh(Node* nutHientai, int namsinh) {
     if (namsinh < nutHientai->data) {
         nutHientai->left = chenNamsinh(nutHientai->left, namsinh);
     }
-    // Lon hon hoac bang -> re phai (xu ly trung lap nam sinh)
+    // Lon hon hoac bang -> re phai 
     else {
         nutHientai->right = chenNamsinh(nutHientai->right, namsinh);
     }
     return nutHientai;
 }
+// hàm duyệt cây   
+void duyetGiua(Node* nutHientai) {
+    if (nutHientai != NULL) {
+        duyetGiua(nutHientai->left);
+        cout << nutHientai->data << " ";
+        duyetGiua(nutHientai->right);
+    }
+}
+
 
 int main() {
-  
+    int mangNamsinh[] = { 2001, 2002, 2006, 2007, 2003, 2004, 2005, 2001, 1999, 2004 };
+    int soLuong = sizeof(mangNamsinh) / sizeof(mangNamsinh[0]);
+    Node* goc = NULL;
+    for (int i = 0; i < soLuong; i++) {
+        goc = chenNamsinh(goc, mangNamsinh[i]);
+    }
+    cout << "Danh sach nam sinh (Duyet giua): ";
+    duyetGiua(goc);
+    cout << endl;
+
     return 0;
 }
