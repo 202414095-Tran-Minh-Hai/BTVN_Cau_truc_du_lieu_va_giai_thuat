@@ -42,3 +42,64 @@ void themSinhVien(Node*& head, SinhVien sv) {
     // Noi nut moi vao sau nut cuoi cung
     nutHientai->next = nutMoi;
 }
+
+// Ham duyet va in danh sach
+void inDanhSach(Node* head) {
+    if (head == NULL) {
+        cout << "Danh sach sinh vien dang trong" << endl;
+        return;
+    }
+
+    cout << "\nDANH SACH SINH VIEN" << endl;
+    Node* nutHientai = head;
+    int stt = 1;
+
+    while (nutHientai != NULL) {
+        cout << "SV " << stt << ": " << nutHientai->data.hoTen
+            << " | Ngay sinh: " << nutHientai->data.ngaySinh
+            << " | Lop: " << nutHientai->data.lop
+            << " | GPA: " << nutHientai->data.gpa << endl;
+
+        nutHientai = nutHientai->next; 
+        stt++;
+    }
+}
+
+int main() {
+    Node* danhSachSV = NULL;
+    int soLuong;
+
+    cout << "Nhap so luong sinh vien: ";
+    cin >> soLuong;
+
+    cin.ignore();
+
+    for (int i = 1; i <= soLuong; i++) {
+        SinhVien sv;
+        cout << "\n Nhap thong tin sinh vien thu " << i << ": " << endl;
+
+        cout << "Nhap ho ten: ";
+
+        getline(cin, sv.hoTen); 
+
+        cout << "Nhap ngay sinh: ";
+
+        getline(cin, sv.ngaySinh);
+
+        cout << "Nhap lop: ";
+
+        getline(cin, sv.lop);
+
+        cout << "Nhap diem GPA: ";
+        cin >> sv.gpa;
+
+        cin.ignore();
+
+        themSinhVien(danhSachSV, sv);
+    }
+
+    // in ra man hinh de kiem tra
+    inDanhSach(danhSachSV);
+
+    return 0;
+}
