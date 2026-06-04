@@ -39,6 +39,28 @@ void indanhsach(Node* head) {
     }
 }
 
+// Ham chen file sao cho luon giu dung trat tu thoi gian tang dan
+void chenFileTheoThoiGian(Node*& head, dacdiemFile fileMoi) {
+    Node* nutMoi = taoNode(fileMoi);
+
+    // Thu muc rong hoac file moi co thoi gian cu hon ca file dau tien
+    if (head == NULL || head->data.thoigianTao >= nutMoi->data.thoigianTao) {
+        nutMoi->next = head;
+        head = nutMoi;
+        return;
+    }
+
+    // Duyet tim vi tri thich hop o giua hoac cuoi
+    Node* nuthientai = head;
+    while (nuthientai->next != NULL && nuthientai->next->data.thoigianTao < nutMoi->data.thoigianTao) {
+        nuthientai = nuthientai->next;
+    }
+
+    // Chen nut moi vao sau nut hien tai
+    nutMoi->next = nuthientai->next;
+    nuthientai->next = nutMoi;
+}
+
 int main() {
 
 
