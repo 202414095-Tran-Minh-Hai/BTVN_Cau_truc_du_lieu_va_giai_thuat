@@ -62,8 +62,14 @@ void chenFileTheoThoiGian(Node*& head, dacdiemFile fileMoi) {
 }
 
 int main() {
+        Node* docfile = NULL;
 
+        // test
+   chenFileTheoThoiGian(docfile, { "BaoCao.docx", 5, 2.5 });
+   chenFileTheoThoiGian(docfile, { "AnhChup.png", 2, 0.5 }); // File nay cu hon, se duoc day len dau
+   chenFileTheoThoiGian(docfile, { "Video.mp4", 8, 15.0 });
 
+   indanhsach(docfile); 
 
     return 0;
 }
