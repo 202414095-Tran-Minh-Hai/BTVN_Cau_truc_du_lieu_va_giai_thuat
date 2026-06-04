@@ -65,6 +65,17 @@ void inDanhSach(Node* head) {
     }
 }
 
+// Ham giai phong bo nho cho danh sach
+void giaiphongbonho(Node*& head) {
+    Node* nutHientai = head;
+    while (nutHientai != NULL) {
+        Node* nutCanXoa = nutHientai;   
+        nutHientai = nutHientai->next;
+        delete nutCanXoa;               
+    }
+    head = NULL;
+}
+
 int main() {
     Node* danhSachSV = NULL;
     int soLuong;
@@ -100,6 +111,8 @@ int main() {
 
     // in ra man hinh de kiem tra
     inDanhSach(danhSachSV);
+
+    giaiphongbonho(danhSachSV); 
 
     return 0;
 }
