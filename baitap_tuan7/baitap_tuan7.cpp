@@ -42,12 +42,61 @@ void themDonthuc(Node*& head, float hs, int sm) {
     nutHientai->next = nutMoi;
 }
 
+// ham in da thuc
+void inDathuc(Node* head) {
+    if (head == NULL) {
+        cout << "0" << endl;
+        return;
+    }
+
+    Node* nutHientai = head;
+    bool dau = true; //bien danh dau de khong in dau '+' o don thuc dau tien
+
+    while (nutHientai != NULL) {
+        // In dau cong cho cac don thuc phia sau neu he so duong
+        if (!dau && nutHientai->data.heso > 0) cout << " + ";
+
+        // In he so
+        cout << nutHientai->data.heso;
+
+        // In so mu (x^...)
+        if (nutHientai->data.somu > 0) {
+            cout << "x^" << nutHientai->data.somu;
+        }
+
+        dau = false;
+        nutHientai = nutHientai->next;
+    }
+    cout << endl;
+}
+
 int main() {
     Node* daThuc = NULL;
-    Node* nuttest = taonode(5, 3);
+    int soLuong;
 
-    cout << "tao don thuc voi he so: "
-        << nuttest->data.heso << " va so mu: " << nuttest->data.somu    << endl;
+    cout << "Ban dung muon nhap bao nhieu don thuc: ";
+    cin >> soLuong;
+
+    for (int i = 1; i <= soLuong; i++) {
+        float hs;
+        int sm;
+
+        cout << "\n-Nhap don thuc thu " << i << endl;
+
+        cout << "Nhap he so: ";
+        cin >> hs;
+
+        cout << "Nhap so mu: ";
+        cin >> sm;
+
+        themDonthuc(daThuc, hs, sm);
+    }
+
+
+    cout << endl;
+    cout << "- Da thuc ban vua nhap la: ";
+    inDathuc(daThuc);
+    cout << endl;
 
     return 0;
 }
