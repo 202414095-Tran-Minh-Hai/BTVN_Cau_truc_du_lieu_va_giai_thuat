@@ -22,7 +22,11 @@ Node* taonode(float hs, int sm) {
     return nutmoi;
 }
 int main() {
- 
-    
+    Node* daThuc = NULL;
+    Node* nuttest = taonode(5, 3);
+
+    cout << "tao don thuc voi he so: "
+        << nuttest->data.heso << " va so mu: " << nuttest->data.somu    << endl;
+
     return 0;
 }
