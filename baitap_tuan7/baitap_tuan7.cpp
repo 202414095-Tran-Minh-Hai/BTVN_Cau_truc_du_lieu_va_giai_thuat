@@ -21,6 +21,27 @@ Node* taonode(float hs, int sm) {
     nutmoi->next = NULL;
     return nutmoi;
 }
+
+// ham them 1 don thuc
+void themDonthuc(Node*& head, float hs, int sm) {
+    Node* nutMoi = taonode(hs, sm);
+
+    // neu ds rong
+    if (head == NULL) {
+        head = nutMoi;
+        return;
+    }
+
+    // neu da co phan tu, duyet den cuoi ds
+    Node* nutHientai = head;
+    while (nutHientai->next != NULL) {
+        nutHientai = nutHientai->next;
+    }
+
+    // Noi vao duoi
+    nutHientai->next = nutMoi;
+}
+
 int main() {
     Node* daThuc = NULL;
     Node* nuttest = taonode(5, 3);
