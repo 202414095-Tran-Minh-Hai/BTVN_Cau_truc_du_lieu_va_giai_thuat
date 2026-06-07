@@ -20,6 +20,64 @@ void caytuantu(int cay[], string tenCay) {
     cout << endl;
 }
 
+
+// CAU TRUC MOC NOI 
+
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+
+    // Ham tao Node
+    Node(int val) {
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
+};
+
+// Ham duyet cay theo thu tu truoc sau
+void duyettruoc(Node* goc) {
+    if (goc != NULL) {
+        cout << goc->data << " ";
+        duyettruoc(goc->left);
+        duyettruoc  (goc->right);
+    }
+}
+
+int main() {
+    // DUNG CAY LECH TRAI
+    Node* goctrai = new Node(1);
+    goctrai->left = new Node(2);
+    goctrai->left->left = new Node(3);
+    goctrai->left->left->left = new Node(4);
+    goctrai->left->left->left->left = new Node(5);
+
+    // DUNG CAY LECH PHAI
+    Node* gocphai = new Node(1);
+    gocphai->right = new Node(2);
+    gocphai->right->right = new Node(3);
+    gocphai->right->right->right = new Node(4);
+    gocphai->right->right->right->right = new Node(5);
+
+    //DUNG CAY dic dac 
+    Node* gocdicdac = new Node(1);
+    gocdicdac->left = new Node(2);
+    gocdicdac->left->right = new Node(3);
+    gocdicdac->left->right->left = new Node(4);
+    gocdicdac->left->right->left->right = new Node(5);
+
+    // In ket qua kiem tra (Duyet tu goc xuong la)
+    cout << "KET QUA DUYET CAY MOC NOI" << endl;
+    cout << "Lech trai: "; duyettruoc(goctrai); cout << endl;
+    cout << "Lech phai: "; duyettruoc(gocphai); cout << endl;
+    cout << "Dic dac   : "; duyettruoc(gocdicdac); cout << endl;
+
+    return 0;
+}
+
+
+/*
 int main() {
     int caylechtrai[MAX_SIZE];
     int caylechphai[MAX_SIZE];
@@ -55,3 +113,4 @@ int main() {
 
     return 0;
 }
+*/
