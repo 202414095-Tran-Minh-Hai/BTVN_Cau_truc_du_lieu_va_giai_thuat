@@ -38,3 +38,32 @@ int canbang(Node* N) {
     return chieuCao(N->left) - chieuCao(N->right);
 }
 
+// xoay cay
+// xoay phai
+Node* xoayphai(Node* y) {
+    Node* x = y->left;
+    Node* T2 = x->right;
+    x->right = y;
+    y->left = T2;
+
+    //chieu cao sau khi xoay
+    y->chieucao = max(chieuCao(y->left), chieuCao(y->right)) + 1;
+    x->chieucao = max(chieuCao(x->left), chieuCao(x->right)) + 1;
+
+    // tra ve goc moi
+    return x;
+}
+
+// xoay sang trái
+Node* xoaytrai(Node* x) {
+    Node* y = x->right;
+    Node* T2 = y->left;
+
+    y->left = x;
+    x->right = T2;
+
+    //chieu cao sau khi xoay
+    x->chieucao = max(chieuCao(x->left), chieuCao(x->right)) + 1;
+    y->chieucao = max(chieuCao(y->left), chieuCao(y->right)) + 1;
+    return y;
+}
