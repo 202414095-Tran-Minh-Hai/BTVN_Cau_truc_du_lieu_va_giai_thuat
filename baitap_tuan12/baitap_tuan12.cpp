@@ -32,13 +32,43 @@ void hamvundong(int arr[], int n, int i) {
         hamvundong(arr, n, max);
     }
 }
+// Ham sap xep vun dong
+void heapSort(int arr[], int n) {
+    // xay dung dong lon nhat
+    cout << "\n-QUA TRINH VUN DONG BAN DAU-" << endl;
+    for (int i = n / 2 - 1; i >= 0; i--) {
+        hamvundong(arr, n, i);
+        cout << "Buoc vun dong nut tai vi tri " << i << " (Gia tri " << arr[i] << "): ";
+        intrangthailuutru(arr, n);
+    }
+
+    //sap xep
+    cout << "\n-QUA TRINH SAP XEP-" << endl;
+    for (int i = n - 1; i > 0; i--) {
+        // Dua phan tu lon nhat xuong cuoi mang chua duoc sap xep
+        swap(arr[0], arr[i]);
+
+        // Goi vun dong lai phan con lai cua mang
+        hamvundong(arr, i, 0);
+        cout << "Trang thai sau khi dua " << arr[i] << " ve cuoi mang: ";
+        intrangthailuutru(arr, n);
+    }
+}
+
 int main() {
     // voi dau vao ở trên bảng
     int arr[] = { 11, 54, 32, 105, 38, 78, 203, 16, 84, 17, 39, 15 };
     int n = sizeof(arr) / sizeof(arr[0]);
 
+
     cout << "- TRANG THAI LUU TRU BAN DAU CUA MANG: " << endl;
     intrangthailuutru(arr, n);
+
+     // Thuc hien thuat toan
+    heapSort(arr, n);
+        cout << "\n" << endl;
+        cout << "MANG SAU KHI SAP XEP TANG DAN: ";
+        intrangthailuutru(arr, n);
 
     return 0;
 }
