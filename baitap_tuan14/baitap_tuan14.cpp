@@ -67,3 +67,48 @@ Node* xoaytrai(Node* x) {
     y->chieucao = max(chieuCao(y->left), chieuCao(y->right)) + 1;
     return y;
 }
+
+// ham chen them mot node vao cay AVL
+Node* chennode(Node* node, int data) {
+    // chen 
+    if (node == NULL)
+        return taonode(data);
+
+    if (data < node->data)
+        node->left = chennode(node->left, data);
+    else if (data > node->data)
+        node->right = chennode(node->right, data);
+    else // Khong cho phep gia tri trung lap tren cay AVL
+        return node;
+
+    // them chieu cao cua node cha hien tai
+    node->chieucao = 1 + max(chieuCao(node->left), chieuCao(node->right));
+
+    // kiem tra su can bang cua node 
+    int cb = canbang(node);
+
+    //4 truong hop lech va xoay
+
+    // traaia trai
+    if (cb > 1 && data < node->left->data)
+        return xoayphai(node);
+
+    // p p
+    if (cb < -1 && data > node->right->data)
+        return xoaytrai(node);
+
+    // t p
+    if (cb > 1 && data > node->left->data) {
+        node->left = xoaytrai(node->left);
+        return xoayphai(node);
+    }
+
+    // p t
+    if (cb < -1 && data < node->right->data) {
+        node->right = xoayphai(node->right);
+        return xoaytrai(node);
+    }
+
+    // Tra ve con tro node hien tai (neu van can bang)
+    return node;
+}
