@@ -112,3 +112,21 @@ Node* chennode(Node* node, int data) {
     // Tra ve con tro node hien tai (neu van can bang)
     return node;
 }
+
+//ham duyệt giua de in ra danh sach tang dan
+void duyetgiua(Node* goc) {
+    if (goc != NULL) {
+        duyetgiua(goc->left);
+        cout << goc->data << " ";
+        duyetgiua(goc->right);
+    }
+}
+
+// ham duyet truoc in theo thu tu root -trai -phai
+void duyettruoc(Node* goc) {
+    if (goc != NULL) {
+        cout << goc->data << " ";
+        duyettruoc(goc->left);
+        duyettruoc(goc->right);
+    }
+}
