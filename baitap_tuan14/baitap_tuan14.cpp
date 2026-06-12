@@ -130,3 +130,29 @@ void duyettruoc(Node* goc) {
         duyettruoc(goc->right);
     }
 }
+int main() {
+    Node* goc = NULL;
+
+    // Day so dau vao tu de bai tuan 14
+    int mangSo[] = { 32, 51, 27, 83, 96, 11, 45, 75, 66 };
+    int soLuong = sizeof(mangSo) / sizeof(mangSo[0]);
+
+    cout << "Chen cac phan tu vao cay AVL" << endl;
+    for (int i = 0; i < soLuong; i++) {
+        goc = chennode(goc, mangSo[i]);
+    }
+
+    cout << "\n-KET QUA DUYET CAY:" << endl;
+
+    // Neu thuat toan dung, dong nay se in ra day so tang dan
+    cout << "Duyet giua (Tang dan): ";
+    duyetgiua(goc);
+    cout << endl;
+
+    // Dong nay cho thay cau truc node nao dang lam Goc sau cung
+    cout << "Duyet truoc(Goc-Trai-Phai): ";
+    duyettruoc(goc);
+    cout << endl;
+
+    return 0;
+}
