@@ -16,6 +16,7 @@
 *.vcxproj
 *.filters
 
-
+*.desktop.ini
+*.w
 x64/
 Debug/
