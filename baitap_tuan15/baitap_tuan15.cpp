@@ -63,22 +63,51 @@ void themcanh(int u, int v) {
     danhsachke[v] = nutU;
 }
 
-int main() {
-    cout << "TEST DANH SACH LIEN KET- " << endl;
-    
-    // Thu them tuyen duong: Ha Noi (0) - Hai Duong (1) va Ha Noi (0) - Phu Ly (3)
-    themcanh(0, 1);
-    themcanh(0, 3);
-    
-    cout << "Cac thanh pho ke voi " << tenThanhPho[0] << " la: ";
-    
-    // Duyet danh sach lien ket cua Ha Noi de in ra
-    Node* tam = danhSachKe[0];
-    while (tam != NULL) {
-        cout << tenThanhPho[tam->iddinh] << " - ";
-        tam = tam->next;
+
+// THUAT TOAN DUYET THEO CHIEU RONG (BFS)
+
+void bfsDanhsach(int dinhBatDau) {
+    bool datham[11] = { false };
+    Hangdoi hanghoi;
+
+    // Cho dinh xuat phat vao hang doi va danh dau
+    hanghoi.them(dinhBatDau);
+    datham[dinhBatDau] = true;
+
+    cout << "Lo trinh BFS: ";
+
+    // Lap den khi nao hang doi rong
+    while (!hanghoi.rong()) {
+        int u = hanghoi.xemdau();
+        hanghoi.xoa();
+
+        cout << tenThanhPho[u];
+        if (!hanghoi.rong() || u == dinhBatDau) cout << " -> ";
+
+        // Quet tat ca cac tuyen duong noi tu thanh pho u
+        Node* tam = danhsachke[u];
+        while (tam != NULL) {
+            int v = tam->iddinh;
+            // Neu thanh pho v nay chua den bao gio
+            if (!datham[v]) {
+                datham[v] = true;   // Danh dau da den
+                hanghoi.them(v);    // Xep vao hang doi de quet tiep
+            }
+            tam = tam->next; // Nhay sang node tiep theo
+        }
     }
-    cout << "\n=> ds oke" << endl;
-    
+    cout << "\n xong" << endl;
+}
+
+int main() {
+    cout << "-TEST THUAT TOAN BFS (MINI DO THI) : " << endl;
+
+    themcanh(0, 1); // HN(0) - HD(1)
+    themcanh(0, 3); // HN(0) - PL(3)
+    themcanh(1, 2); // HD(1) - HY(2)
+
+    // Ha Noi -> Phu Ly -> Hai Duong -> Hung Yen
+    bfsDanhsach(0);
+
     return 0;
 }
