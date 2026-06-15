@@ -100,13 +100,40 @@ void bfsDanhsach(int dinhBatDau) {
 }
 
 int main() {
-    cout << "-TEST THUAT TOAN BFS (MINI DO THI) : " << endl;
+    // Khoi tao lai mang 
+    for (int i = 0; i < 11; i++) {
+        danhsachke[i] = NULL;
+    }
 
-    themcanh(0, 1); // HN(0) - HD(1)
-    themcanh(0, 3); // HN(0) - PL(3)
-    themcanh(1, 2); // HD(1) - HY(2)
+    //13 TUYEN DUONG
+    // D1, D4, D5, D6, D7, D8 (Tu Ha Noi)
+    themcanh(0, 1); // HN - HD
+    themcanh(0, 3); // HN - PL
+    themcanh(0, 4); // HN - HB
+    themcanh(0, 5); // HN - ST
+    themcanh(0, 6); // HN - TN
+    themcanh(0, 7); // HN - BN
 
-    // Ha Noi -> Phu Ly -> Hai Duong -> Hung Yen
+    // D2, D13 (Tu Hai Duong)
+    themcanh(1, 2);  // HD - HY
+    themcanh(1, 10); // HD - HP
+
+    // D3 (Tu Hung Yen)
+    themcanh(2, 3);  // HY - PL
+
+    // D9, D11 (Tu Bac Ninh)
+    themcanh(7, 8);  // BN - BG
+    themcanh(7, 9);  // BN - UB
+
+    // D10 (Tu Bac Giang)
+    themcanh(8, 9);  // BG - UB
+
+    // D12 (Tu Uong Bi)
+    themcanh(9, 10); // UB - HP
+
+    cout << "\n KET QUAT DUYET DO THI GIAO THONG:" << endl;
+
+    // Chay thuat toan tu Ha Noi (index = 0)
     bfsDanhsach(0);
 
     return 0;
