@@ -68,3 +68,31 @@ void dijkstra(int dinhBatDau) {
         }
     }
 }
+// in ra lo trinh
+void inDuongdi(int batdau, int ketThuc) {
+    if (khoangcachmin[ketThuc] == chua_xay_duong) {
+        cout << "X Khong co duong di tu " << tenthanhpho[batdau] << " den " << tenthanhpho[ketThuc] << endl;
+        return;
+    }
+
+    cout << "=> Tong chieu dai ngan nhat: " << khoangcachmin[ketThuc] << " km" << endl;
+    cout << "=> Lo trinh di chuyen: ";
+
+    int duongDi[11];
+    int sodinhdiqua = 0;
+    int tam = ketThuc;
+
+    // Lan nguoc tu ket thuc ve bat dau
+    while (tam != -1) {
+        duongDi[sodinhdiqua] = tam;
+        sodinhdiqua++;
+        tam = truoc[tam];
+    }
+
+    // In chieu thuan
+    for (int i = sodinhdiqua - 1; i >= 0; i--) {
+        cout << tenthanhpho[duongDi[i]];
+        if (i > 0) cout << " -> ";
+    }
+    cout << endl;
+}
