@@ -96,3 +96,50 @@ void inDuongdi(int batdau, int ketThuc) {
     }
     cout << endl;
 }
+int main() {
+    khoitaoDothi();
+
+    // Nap cac tuyen duong mo phong theo ban do
+    themcanh(0, 1, 60);  // HN - HD
+    themcanh(0, 3, 55);  // HN - PL
+    themcanh(0, 4, 75);  // HN - HB
+    themcanh(0, 5, 40);  // HN - ST
+    themcanh(0, 6, 80);  // HN - TN
+    themcanh(0, 7, 30);  // HN - BN
+
+    themcanh(1, 2, 45);  // HD - HY
+    themcanh(1, 10, 45); // HD - HP
+
+    themcanh(2, 3, 35);  // HY - PL
+
+    themcanh(7, 8, 20);  // BN - BG
+    themcanh(7, 9, 85);  // BN - UB
+
+    themcanh(8, 9, 70);  // BG - UB
+
+    themcanh(9, 10, 40); // UB - HP
+
+    cout << "DUONG DI NGAN NHAT=" << endl;
+
+    int diemXp1 = 0; // Ha Noi
+    int diemden = 10;     // Hai Phong
+
+    // Tinh toan khoang cach tu Ha Noi den moi noi
+    dijkstra(diemXp1);
+
+    cout << "\nTim duong tu [" << tenthanhpho[diemXp1] << "] den [" << tenthanhpho[diemden] << "]:" << endl;
+    inDuongdi(diemXp1, diemden);
+
+    cout << " " << endl;
+
+    int diemXp2 = 4; // Hoa Binh
+    int diemden2 = 9;      // Uong Bi
+
+    // Tinh toan lai khoang cach xuat phat tu Hoa Binh
+    dijkstra(diemXp2);
+
+    cout << "Tim duong tu [" << tenthanhpho[diemXp2] << "] den [" << tenthanhpho[diemden2   ] << "]:" << endl;
+    inDuongdi(diemXp2, diemden2);
+
+    return 0;
+}
