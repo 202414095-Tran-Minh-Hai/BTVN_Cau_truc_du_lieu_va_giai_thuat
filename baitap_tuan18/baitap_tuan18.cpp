@@ -13,8 +13,8 @@ int matran[11][11];
 // Khoi tao do thi
 void taodothi() {
     for (int i = 0; i < 11; i++) {
-        for (int j = 0; j < 11; j++) {
-            if (i == j) matran[i][j] = 0;
+        for (int j= 0; j < 11; j++) {
+            if (i== j) matran[i][j] = 0;
             else matran[i][j] = kocoduongdi;
         }
     }
@@ -27,12 +27,12 @@ void themcanh(int u, int v, int trongSo) {
 
 // Ham in Ma tran dinh ke 
 void inmatran(int maTran[11][11]) {
-    for (int i = 0; i < 11; i++) cout << i << "\t";
+    for (int i =0; i < 11; i++) cout << i << "\t";
     cout << "\n";
-    for (int i = 0; i < 11; i++) {
+    for (int i= 0; i < 11; i++) {
         cout << " " << i << " | ";
         for (int j = 0; j < 11; j++) {
-            if (maTran[i][j] == kocoduongdi || i == j) cout << "0\t"; // In 0 neu khong co canh noi
+            if (maTran[i][j]== kocoduongdi || i== j) cout << "0\t"; // In 0 neu khong co canh noi
             else cout << maTran[i][j] << "\t";                   // In ra trong so
         }
         cout << "\n";
@@ -122,5 +122,63 @@ void prim(int dinhbatdau) {
         }
     }
 
+    inmatran(matranMST);
+}
+
+// THUAT TOAN KRUSKAL
+
+struct Canh { int u, v, trongSo; };
+bool sosanhcanh(Canh a, Canh b) { return a.trongSo < b.trongSo; }
+
+int taphop[11];
+
+int timgoc(int i) {
+
+    if (taphop[i]== i) return i;
+    return taphop[i]= timgoc(taphop[i]);
+}
+void goptaphop(int i, int j) {
+    taphop[timgoc(i)] = timgoc(j);
+}
+
+void kruskal() {
+    vector<Canh> danhsachcanh;
+    int matranMST[11][11];
+
+    // Khoi tao mang tap hop va ma tran cay khung
+    for (int i = 0; i < 11; i++) {
+        taphop[i] = i;
+        for (int j = 0; j < 11; j++) matranMST[i][j] = kocoduongdi;
+    }
+
+    // Rut trich toan bo cac canh tu ma tran do thi
+    for (int i = 0; i < 11; i++) {
+        for (int j = i + 1; j < 11; j++) {
+            if (matran[i][j] != kocoduongdi) {
+                danhsachcanh.push_back({ i, j, matran[i][j] });
+            }
+        }
+    }
+
+    // Sap xep cac canh tang dan
+    sort(danhsachcanh.begin(), danhsachcanh.end(), sosanhcanh);
+
+    int socanh = 0;
+    for (Canh canh : danhsachcanh) {
+        if (socanh == 10) break; // Cay khung 11 dinh thi chi can 10 canh
+
+        // Neu khong tao thanh chu trinh thi them vao cay khung
+        if (timgoc(canh.u) != timgoc(canh.v)) {
+
+            matranMST[canh.u][canh.v]= canh.trongSo;
+
+            matranMST[canh.v][canh.u]= canh.trongSo;
+
+            goptaphop(canh.u, canh.v);
+            socanh++;
+        }
+    }
+
+    // In ra ma tran cua cay khung bang ham ban da viet
     inmatran(matranMST);
 }
