@@ -83,3 +83,44 @@ void dijkstra(int batDau, int ketThuc) {
     }
     cout << "\n";
 }
+// THUAT TOAN PRIM
+
+void prim(int dinhbatdau) {
+    int matranMST[11][11];
+    int khoangcach[11], cha[11];
+    bool dathem[11] = { false };
+
+    // Khoi tao ma tran cay khung rong
+    for (int i = 0; i < 11; i++)
+        for (int j = 0; j < 11; j++) matranMST[i][j] = kocoduongdi;
+
+    for (int i = 0; i < 11; i++) khoangcach[i] = kocoduongdi;
+    khoangcach[dinhbatdau] = 0;
+    cha[dinhbatdau] = -1;
+
+    for (int i = 0; i < 10; i++) {
+        int min = kocoduongdi, u = -1;
+        for (int v = 0; v < 11; v++) {
+            if (!dathem[v] && khoangcach[v] < min) {
+                min = khoangcach[v];
+                u = v;
+            }
+        }
+
+        dathem[u] = true;
+        // Ghi canh vao ma tran mst
+        if (cha[u] != -1) {
+            matranMST[u][cha[u]] = matran[u][cha[u]];
+            matranMST[cha[u]][u] = matran[u][cha[u]];
+        }
+
+        for (int v = 0; v < 11; v++) {
+            if (matran[u][v] != kocoduongdi && !dathem[v] && matran[u][v] < khoangcach[v]) {
+                cha[v] = u;
+                khoangcach[v] = matran[u][v];
+            }
+        }
+    }
+
+    inmatran(matranMST);
+}
