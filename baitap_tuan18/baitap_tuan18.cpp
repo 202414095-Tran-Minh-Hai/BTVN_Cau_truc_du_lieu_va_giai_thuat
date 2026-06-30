@@ -182,3 +182,32 @@ void kruskal() {
     // In ra ma tran cua cay khung bang ham ban da viet
     inmatran(matranMST);
 }
+int main() {
+    taodothi();
+
+    // Nap 13 tuyen duong voi trong so = vi tri canh
+    themcanh(0,1,1);   
+    themcanh(1,2, 2);   
+    themcanh(2, 3,3);   
+    themcanh(0,3, 4);   
+    themcanh(0,4, 5);   
+    themcanh(0, 5,6);   
+    themcanh(0, 6, 7);    
+    themcanh(0,7,8); 
+    themcanh(7, 8, 9);   
+    themcanh(8, 9, 10);
+    themcanh(7, 9, 11);  
+    themcanh(9, 10, 12); 
+    themcanh(1, 10, 13);
+
+    cout << "-DIJKSTRA-" << endl;
+    dijkstra(0, 10); 
+
+    cout << "\n-PRIM (MA TRAN CAY KHUNG)" << endl;
+    prim(0);
+
+    cout << "\n-KRUSKAL (MA TRAN CAY KHUNG)" << endl;
+    kruskal();
+
+    return 0;
+}
